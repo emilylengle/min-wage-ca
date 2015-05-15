@@ -1,0 +1,485 @@
+<!DOCTYPE HTML>
+<!--[if lt IE 7]><html class="no-js lt-ie9 lt-ie8 lt-ie7"><![endif]-->
+<!--[if IE 7]><html class="no-js lt-ie9 lt-ie8"><![endif]-->
+<!--[if IE 8]><html class="no-js lt-ie9"><![endif]-->
+<!--[if gt IE 8]><!--><html class="no-js"><!--<![endif]-->
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<meta name="viewport" content="width=device-width, initial-scale = 1.0, user-scalable = no">
+	<title>Making a Living in California</title>
+	<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700,600' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" href="css/normalize.css" type="text/css" media="screen">
+	<link rel="stylesheet" href="css/grid.css" type="text/css" media="screen">
+	<link rel="stylesheet" href="css/style.css" type="text/css" media="screen">
+    <script type="text/javascript" src= "js/radar-chart-family.js"></script>
+    <script type="text/javascript" src="d3/d3.js"></script>
+
+
+</head>
+
+<body>
+
+<!-- Part 1: Title -->
+	<div class="slide dark" id="slide1" data-slide="1" data-stellar-background-ratio="0.5">
+		<div class="container clearfix">
+
+			<div id="content" class="grid_12">
+				<h1>Making a Living in California</h1>
+			</div>
+
+		</div>
+	</div>
+
+<!-- Part 1.5: Introduction -->
+
+<div class="slide dark" id="slide3" data-slide="3" data-stellar-background-ratio="0.5">
+        <div class="container clearfix">
+          <div id="content" class="grid_12">
+            <div id="content" class="grid_12">
+              <p><h2>“By living wages, I mean more than a bare subsistence level—I mean the wages of a decent living.” —Franklin Delano Roosevelt</h2></p>
+                            <p>In Alameda County in 2012, 60% of single parent households; 29.4% of married couples with children; and 22.7% of households without children were not making enough money to meet their basic costs. The cost of living measure used throughout this site is the <a href="http://www.insightcced.org/calculator.html" target="_blank">Family Economic Self-Sufficiency Standard</a>. It includes the basic costs families face on a daily basis&mdash;housing, food, child care, out-of-pocket medical expenses, transportation, and other necessary spending (it does not include spending for recreation, entertainment, savings, or debt repayment). Unlike the federal poverty level or the consumer price index, the self-sufficiency standard provides a comprehensive picture of what it takes for families to make ends meet and accounts for variation in costs of living at the county level.</p>
+
+                            <p>Here are the different family sizes we look at:</p>
+            </div>
+            <div id="content" class="grid_3 omega" style="text-align: center"><img src="images/one-adult.jpg"><p>One adult</p></div>
+            <div id="content" class="grid_3 omega"><img src="images/one-adult-infant.jpg" style="margin-left: 50px"><p>One adult and an infant</p></div>
+            <div id="content" class="grid_3 omega"><img src="images/one-adult-infant-schoolage.jpg" style="margin-left: 50px"><p>One adult, an infant, and a schoolage child</p></div>
+            <div id="content" class="grid_3 omega"><img src="images/one-adult-schoolage-teenage.jpg" style="margin-left: 50px"><p>One adult, a schoolage child, and a teenager</p></div>
+            <div id="content" class="grid_12"><br><br></div>
+
+            <div id="content" class="grid_3 omega" style="text-align: center"><img src="images/two-adults.jpg"><p>Two adults</p></div>
+            <div id="content" class="grid_3 omega"><img src="images/two-adults-infant.jpg" style="margin-left: 50px"><p>Two adults and an infant</p></div>
+            <div id="content" class="grid_3 omega"><img src="images/two-adults-infant-schoolage.jpg" style="margin-left: 50px"><p>Two adults, an infant, and a schoolage child</p></div>
+            <div id="content" class="grid_3 omega"><img src="images/two-adults-schoolage-teenage.jpg" style="margin-left: 50px"><p>Two adults, a schoolage child, and a teenager</p></div>
+        </div>
+    </div>
+
+<!-- Part 2: Historical Cost of Living in Alameda-->
+	<div class="slide light" id="slide2" data-slide="2" data-stellar-background-ratio="0.5">
+		<div class="container clearfix">
+
+			<div id="content" class="grid_12">
+				<h1>The Cost of Living is Rising</h1>
+				
+			  <p>Between 2000 and 2014, the cost of living has risen significantly in Alameda County. During this time, increases in essential family expenses have outpaced inflation. Families with children face dramatically higher monthly costs than adults without children do.</p>
+				<p><strong>Use the radar graphs below to see the changes in expenses for different families in Alameda since 2000.</strong></p>
+			</div>
+
+           
+            <br>
+
+            <!-- mouseover years -->
+            <div id="content" class="grid_4" style="margin-top: 25px"><strong>Hover over to change the year:</strong></div>
+            <div id="twothousand" class="year" onmouseover="update(2000)" style="margin-left: 0px">2000</div>
+            <div id="twothousandthree" class="year" onmouseover="update(2003)">2003</div>
+            <div id="twothousandeight" class="year" onmouseover="update(2008)">2008</div>
+            <div id="twothousandeleven" class="year" onmouseover="update(2011)">2011</div>
+            <div id="twothousandfourteen" class="year" onmouseover="update(2014)">2014</div>
+            <div id="chart-adult" class="grid_4 omega" style="text-align: center"><img src="images/one-adult.jpg" style="margin-left: 50px" "margin-right: 50px"></div>
+            <div id="chart-adult-child" class="grid_4 omega" style="text-align: center"><img src="images/one-adult-infant.jpg" style="margin-left: 50px" "margin-right: 50px"></div>
+            <div id="chart-adult-children" class="grid_4 omega" style="text-align: center"><img src="images/one-adult-infant-schoolage.jpg" style="margin-left: 50px" "margin-right: 50px"></div>
+
+            <script type="text/javascript">
+
+        //datasets for 1 adult for each year
+        
+      var data20001a = [[
+        //cost of living
+        {axis: "Housing", value: 734, yOffset: 10}, 
+        {axis: "Child Care", value: 0}, 
+        {axis: "Food", value: 164},  
+        {axis: "Transportation", value: 49},  
+        {axis: "Health Care", value: 104},
+        {axis: "Other", value: 105},
+        {axis: "Taxes", value: 248, xOffset: -20} 
+        ]
+      ];
+
+      var data20031a = [[
+        //cost of living
+        {axis: "Housing", value: 1132, yOffset: 10}, 
+        {axis: "Child Care", value: 0}, 
+        {axis: "Food", value: 182},  
+        {axis: "Transportation", value: 60},  
+        {axis: "Health Care", value: 67},
+        {axis: "Other", value: 144},
+        {axis: "Taxes", value: 352, xOffset: -20} 
+        ]
+      ];
+
+      var data20081a = [[
+        //cost of living
+        {axis: "Housing", value: 1027, yOffset: 10}, 
+        {axis: "Child Care", value: 0}, 
+        {axis: "Food", value: 290},  
+        {axis: "Transportation", value: 116},  
+        {axis: "Health Care", value: 104},
+        {axis: "Other", value: 154},
+        {axis: "Taxes", value: 363, xOffset: -20} 
+        ]
+      ];
+
+      var data20111a = [[
+        //cost of living
+        {axis: "Housing", value: 1153, yOffset: 10}, 
+        {axis: "Child Care", value: 0}, 
+        {axis: "Food", value: 276},  
+        {axis: "Transportation", value: 133},  
+        {axis: "Health Care", value: 140},
+        {axis: "Other", value: 170},
+        {axis: "Taxes", value: 416, xOffset: -20} 
+        ]
+      ];
+
+      var data20141a = [[
+        //cost of living
+        {axis: "Housing", value: 1146, yOffset: 10}, 
+        {axis: "Child Care", value: 0}, 
+        {axis: "Food", value: 300},  
+        {axis: "Transportation", value: 151},  
+        {axis: "Health Care", value: 149},
+        {axis: "Other", value: 175},
+        {axis: "Taxes", value: 412, xOffset: -20} 
+        ]
+      ];
+
+      //data for 1 adult with 1 child
+
+      var data20001a1c = [[
+        //cost of living
+        {axis: "Housing", value: 921, yOffset: 10}, 
+        {axis: "Child Care", value: 681}, 
+        {axis: "Food", value: 241},  
+        {axis: "Transportation", value: 49},  
+        {axis: "Health Care", value: 265},
+        {axis: "Other", value: 216},
+        {axis: "Taxes", value: 429, xOffset: -20} 
+        ]
+      ];
+
+      var data20031a1c = [[
+        //cost of living
+        {axis: "Housing", value: 1420, yOffset: 10}, 
+        {axis: "Child Care", value: 758}, 
+        {axis: "Food", value: 266},  
+        {axis: "Transportation", value: 60},  
+        {axis: "Health Care", value: 182},
+        {axis: "Other", value: 269},
+        {axis: "Taxes", value: 441, xOffset: -20} 
+        ]
+      ];
+
+      var data20081a1c = [[
+        //cost of living
+        {axis: "Housing", value: 1216, yOffset: 10}, 
+        {axis: "Child Care", value: 857}, 
+        {axis: "Food", value: 425},  
+        {axis: "Transportation", value: 116},  
+        {axis: "Health Care", value: 258},
+        {axis: "Other", value: 287},
+        {axis: "Taxes", value: 483, xOffset: -20} 
+        ]
+      ];
+
+      var data20111a1c = [[
+        //cost of living
+        {axis: "Housing", value: 1366, yOffset: 10}, 
+        {axis: "Child Care", value: 1047}, 
+        {axis: "Food", value: 411},  
+        {axis: "Transportation", value: 133},  
+        {axis: "Health Care", value: 374},
+        {axis: "Other", value: 333},
+        {axis: "Taxes", value: 672, xOffset: -20} 
+        ]
+      ];
+
+      var data20141a1c = [[
+        //cost of living
+        {axis: "Housing", value: 1441, yOffset: 10}, 
+        {axis: "Child Care", value: 1341}, 
+        {axis: "Food", value: 445},  
+        {axis: "Transportation", value: 151},  
+        {axis: "Health Care", value: 450},
+        {axis: "Other", value: 383},
+        {axis: "Taxes", value: 822, xOffset: -20} 
+        ]
+      ];
+
+      //data for 1 adult + 2 children
+      var data20001a2c = [[
+        //cost of living
+        {axis: "Housing", value: 921, yOffset: 10}, 
+        {axis: "Child Care", value: 1062}, 
+        {axis: "Food", value: 365},  
+        {axis: "Transportation", value: 49},  
+        {axis: "Health Care", value: 288},
+        {axis: "Other", value: 268},
+        {axis: "Taxes", value: 469, xOffset: -20} 
+        ]
+      ];
+
+      var data20031a2c = [[
+        //cost of living
+        {axis: "Housing", value: 1420, yOffset: 10}, 
+        {axis: "Child Care", value: 1158}, 
+        {axis: "Food", value: 402},  
+        {axis: "Transportation", value: 60},  
+        {axis: "Health Care", value: 200},
+        {axis: "Other", value: 324},
+        {axis: "Taxes", value: 393, xOffset: -20} 
+        ]
+      ];
+
+      var data20081a2c = [[
+        //cost of living
+        {axis: "Housing", value: 1216, yOffset: 10}, 
+        {axis: "Child Care", value: 1282}, 
+        {axis: "Food", value: 644},  
+        {axis: "Transportation", value: 116},  
+        {axis: "Health Care", value: 276},
+        {axis: "Other", value: 353},
+        {axis: "Taxes", value: 461, xOffset: -20} 
+        ]
+      ];
+
+      var data20111a2c = [[
+        //cost of living
+        {axis: "Housing", value: 1366, yOffset: 10}, 
+        {axis: "Child Care", value: 1520}, 
+        {axis: "Food", value: 620},  
+        {axis: "Transportation", value: 133},  
+        {axis: "Health Care", value: 396},
+        {axis: "Other", value: 403},
+        {axis: "Taxes", value: 700, xOffset: -20} 
+        ]
+      ];
+
+      var data20141a2c = [[
+        //cost of living
+        {axis: "Housing", value: 1441, yOffset: 10}, 
+        {axis: "Child Care", value: 1864}, 
+        {axis: "Food", value: 674},  
+        {axis: "Transportation", value: 151},  
+        {axis: "Health Care", value: 475},
+        {axis: "Other", value: 461},
+        {axis: "Taxes", value: 903, xOffset: -20} 
+        ]
+      ];
+      
+
+    //listener for year mouseover
+
+    d3.select("#nYear").on("input", function() {
+        update(+this.value);
+    });
+
+    var coloradult = "#2C3E50";
+
+    update(2000);
+
+    //update function runs on year input, updates year mouseover color and chart based on year
+    function update(nYear) {
+        d3.select("#nYear-value").text(nYear);
+        d3.select("#nYear").property("value", nYear);
+        if(nYear == 2000) {
+            document.getElementById("twothousand").style.backgroundColor = "#bd3b01";
+            document.getElementById("twothousandthree").style.backgroundColor = "#2C3E50";
+            document.getElementById("twothousandeight").style.backgroundColor = "#2C3E50";
+            document.getElementById("twothousandeleven").style.backgroundColor = "#2C3E50";
+            document.getElementById("twothousandfourteen").style.backgroundColor = "#2C3E50";
+            RadarChart.draw("#chart-adult", data20001a, coloradult);
+            RadarChart.draw("#chart-adult-child", data20001a1c, coloradult);
+            RadarChart.draw("#chart-adult-children", data20001a2c, coloradult);
+        }
+
+        else if(nYear == 2003) {
+            document.getElementById("twothousandthree").style.backgroundColor = "#bd3b01";
+            document.getElementById("twothousand").style.backgroundColor = "#2C3E50";
+            document.getElementById("twothousandeight").style.backgroundColor = "#2C3E50";
+            document.getElementById("twothousandeleven").style.backgroundColor = "#2C3E50";
+            document.getElementById("twothousandfourteen").style.backgroundColor = "#2C3E50";
+            RadarChart.draw("#chart-adult", data20031a, coloradult);
+            RadarChart.draw("#chart-adult-child", data20031a1c, coloradult);
+            RadarChart.draw("#chart-adult-children", data20031a2c, coloradult);
+        }
+
+
+        else if(nYear == 2008) {
+            document.getElementById("twothousandeight").style.backgroundColor = "#bd3b01";
+            document.getElementById("twothousandthree").style.backgroundColor = "#2C3E50";
+            document.getElementById("twothousand").style.backgroundColor = "#2C3E50";
+            document.getElementById("twothousandeleven").style.backgroundColor = "#2C3E50";
+            document.getElementById("twothousandfourteen").style.backgroundColor = "#2C3E50";
+            RadarChart.draw("#chart-adult", data20081a, coloradult);
+            RadarChart.draw("#chart-adult-child", data20081a1c, coloradult);
+            RadarChart.draw("#chart-adult-children", data20081a2c, coloradult);
+        }
+
+
+        else if(nYear == 2011) {
+            document.getElementById("twothousandeleven").style.backgroundColor = "#bd3b01";
+            document.getElementById("twothousandthree").style.backgroundColor = "#2C3E50";
+            document.getElementById("twothousandeight").style.backgroundColor = "#2C3E50";
+            document.getElementById("twothousand").style.backgroundColor = "#2C3E50";
+            document.getElementById("twothousandfourteen").style.backgroundColor = "#2C3E50";
+            RadarChart.draw("#chart-adult", data20111a, coloradult);
+            RadarChart.draw("#chart-adult-child", data20111a1c, coloradult);
+            RadarChart.draw("#chart-adult-children", data20111a2c, coloradult);
+        }
+
+
+        else if(nYear == 2014) {
+            document.getElementById("twothousandfourteen").style.backgroundColor = "#bd3b01";
+            document.getElementById("twothousandthree").style.backgroundColor = "#2C3E50";
+            document.getElementById("twothousandeight").style.backgroundColor = "#2C3E50";
+            document.getElementById("twothousandeleven").style.backgroundColor = "#2C3E50";
+            document.getElementById("twothousand").style.backgroundColor = "#2C3E50";
+            RadarChart.draw("#chart-adult", data20141a, coloradult);
+            RadarChart.draw("#chart-adult-child", data20141a1c, coloradult);
+            RadarChart.draw("#chart-adult-children", data20141a2c, coloradult);
+        }
+
+    }
+
+  </script>
+
+
+		</div>
+	</div>
+
+
+<!-- Part 3: Current Cost of Living in California-->
+    <div class="slide dark" id="slide3" data-slide="3" data-stellar-background-ratio="0.5">
+        <div class="container clearfix">
+            <div id="content" class="grid_12">
+                <h1>Current Costs in California</h1>
+                <h2>On a statewide level, current cost of living expenses vary.</h2>
+            <div id="content" class="grid_12">
+                <p>See how the cost of living in Alameda County compares to other counties in the state.</p>
+                                <p><strong>Choose a family size then click on a circle on the map to select a county. Select multiple counties (hold down the ctrl key while clicking on a circle) to compare them against each other.</strong></p>
+            </div>
+            
+        <div id="content" class="grid_12">
+            <!-- Begin Tableau Dashboard -->
+                <script type='text/javascript' src='https://public.tableau.com/javascripts/api/viz_v1.js'></script>
+                <div class='tableauPlaceholder' style='width: 981px; height: 742px;'><noscript><a href='#'><img alt='2014 California Self-Sufficiency Standard ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Y5&#47;Y5HTZ2WS4&#47;1_rss.png' style='border: none' /></a></noscript><object class='tableauViz' width='981' height='742' style='display:none;'><param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' /> <param name='path' value='shared&#47;Y5HTZ2WS4' /> <param name='toolbar' value='yes' /><param name='static_image' value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Y5&#47;Y5HTZ2WS4&#47;1.png' /> <param name='animate_transition' value='yes' /><param name='display_static_image' value='yes' /><param name='display_spinner' value='yes' /><param name='display_overlay' value='yes' /><param name='display_count' value='yes' /><param name='showVizHome' value='no' /><param name='showTabs' value='y' /><param name='bootstrapWhenNotified' value='true' /></object></div>
+            <!-- End Tableau Dashboard -->
+</div>
+
+            </div>
+        </div>
+    </div>
+	
+
+<!-- Part 4: Wage Gap -->
+    <div class="slide light" id="slide4" data-slide="4" data-stellar-background-ratio="0.5">
+      <div class="container clearfix">
+            <div id="content" class="grid_12">
+                <h1>The Wage Gap</h1>
+                <h2>For most families, minimum wage does not equate to a self-sufficient wage.
+</h2>
+            </div>
+        <div id="content" class="grid_12">
+                <p>Meeting their basic needs is difficult for many families. The current California statewide minimum wage is $9 per hour (higher than the federal minimum wage of $7.25 per hour). While cities in Alameda have set their own higher minimum wages (from $10 to $12.25 per hour), many families still struggle to make ends meet each month.</p>
+               <p><strong>Choose a family size and use the minimum wage slider to see how different family types are impacted by the current minimum wage and what minimum wage value would be needed to help them achieve self-sufficiency. Hover over a specific county to get more details.</strong></p>
+          </div>
+
+          <!-- Begin Tableau Dashboard -->
+                <div align="center"><div class='tableauPlaceholder' style='width: 704px; height: 769px;'>
+                  <noscript>
+                		<a href='http:&#47;&#47;people.ischool.berkeley.edu&#47;~pv&#47;INFO247&#47;Project&#47;index.html'><img alt='Minimum Wage vs. Self-SufficiencyFor most California families, the current minimum wage isn&#39;t enough to cover everyday costs. Take a look at what minimum wage would be needed to keep these families self-sufficient. ' src='http:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Ca&#47;CaliforniaSelfSufficiency&#47;Dashboard2&#47;1_rss.png' style='border: none' /></a>
+                </noscript>
+                    <object class='tableauViz' width='704' height='769' style='display:none;'>
+                        <param name='host_url' value='http%3A%2F%2Fpublic.tableau.com%2F' /> 
+                        <param name='site_root' value='' /><param name='name' value='CaliforniaSelfSufficiency&#47;Dashboard2' />
+                        <param name='tabs' value='no' /><param name='toolbar' value='yes' />
+                        <param name='static_image' value='http:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Ca&#47;CaliforniaSelfSufficiency&#47;Dashboard2&#47;1.png' /> 
+                      <param name='animate_transition' value='yes' />
+                        <param name='display_static_image' value='yes' />
+                        <param name='display_spinner' value='yes' />
+                        <param name='display_overlay' value='yes' />
+                        <param name='display_count' value='yes' />
+                        <param name='showVizHome' value='no' />
+                        <param name='showVizHome' value='no' />
+                        <param name='showTabs' value='y' />
+                    </object>
+                </div><div></div></div>
+          <!-- End Tableau Dashboard -->
+
+      </div>
+        </div>
+    </div>
+
+
+<!-- Part 5: A Local Perspective-->
+
+    <div class="slide dark" id="slide5" data-slide="5" data-stellar-background-ratio="0.5">
+        <div class="container clearfix">
+            <div id="content" class="grid_12">
+                <h1>A Local Perspective</h1>
+                <h2>How are three cities addressing the gap?</h2>
+                <p>Cost of living also differs within counties. In Alameda County, three adjoining cities&mdash;Emeryville, Berkeley, and Oakland&mdash;have each tried to address local cost of living variations by passing or proposing local minimum wage ordinances. Oakland currently has the highest minimum wage in the country at $12.25 an hour. On May 5, 2015, Emeryville gave initial approval to raise its minimum wage to $16 by 2019. The proposed ordinance states:<br>
+                <blockquote>“[I]n an effort to help working households achieve economic security and acknowledging the higher relative cost of living in San Francisco Bay Area, the City Council of the City of Emeryville wishes to enact a citywide minimum wage that is higher than the minimum wage required by the federal and state rates.”</blockquote>
+                <p><strong>Use the visualization below to see how current and future minimum wage laws in each of these three cities would impact a family families of one adult with an infant and a schoolage child.</strong></p>
+
+            <!-- Begin Tableau Dashboard -->
+                <script type='text/javascript' src='http://public.tableau.com/javascripts/api/viz_v1.js'></script><div class='tableauPlaceholder' style='width: 982px; height: 742px;'><noscript><a href='#'><img alt='Future OutlookIn the East Bay, three neighboring cities have tried to address this gap by implementing different minimum wage levels. ' src='http:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;ci&#47;cities_7&#47;Dashboard3&#47;1_rss.png' style='border: none' /></a></noscript><object class='tableauViz' width='982' height='742' style='display:none;'><param name='host_url' value='http%3A%2F%2Fpublic.tableau.com%2F' /> <param name='site_root' value='' /><param name='name' value='cities_7&#47;Dashboard3' /><param name='tabs' value='no' /><param name='toolbar' value='yes' /><param name='static_image' value='http:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;ci&#47;cities_7&#47;Dashboard3&#47;1.png' /> <param name='animate_transition' value='yes' /><param name='display_static_image' value='yes' /><param name='display_spinner' value='yes' /><param name='display_overlay' value='yes' /><param name='display_count' value='yes' /><param name='showVizHome' value='no' /><param name='showTabs' value='y' /><param name='bootstrapWhenNotified' value='true' /></object></div>
+            <!-- End Tableau Dashboard --></div>
+            <div id="content" class="grid_12" style="font-size: 0.7em">The minimum wage data for this dashboard comes from the <a href="http://www.ci.berkeley.ca.us/ContentDisplay.aspx?id=102361" target="_blank">City of Berkeley Housing and Community Services Department</a>; the <a href="http://www.ci.emeryville.ca.us/DocumentCenter/Home/View/7793" target="_blank"> City of Emeryville's Draft Minimum Wage Ordinance</a>; and <a href="http://ballotpedia.org/City_of_Oakland_Minimum_Wage_Increase_Initiative,_Measure_FF_%28November_2014%29" target="_blank">Ballotpedia's "City of Oakland Minimum Wage Increase Initiative."</a> The comparison to minimum wages in California and in other U.S. cities comes from <a href="http://www.raisetheminimumwage.com/pages/minimum-wage-laws-and-proposals-for-major-u.s.-cities" target="_blank">Raise the Minimum Wage's "Minimum Wage Laws and Proposals for Major U.S. Cities."</a></div>
+        </div>
+    </div> 
+
+
+<!-- Part 6: Conclusion -->
+
+    <div class="slide light" id="slide6" data-slide="6" data-stellar-background-ratio="0.5">
+        <div class="container clearfix">
+            <div id="content" class="grid_12">
+                <h1>Conclusion</h1>
+               <h2>Local changes in minimum wage can have a national impact.
+</h2>
+
+
+                
+
+            </div>
+            <div id="content" class="grid_12">
+                <p>The proposed minimum wage increases in Alameda County are still not enough to meet the self-sufficiency standards for many families, but they are an important first step in changing the status quo. The recent media attention on these legislative proposals in Alameda highlight the ability for local governments to change the national conversation on minimum wage. It’s important that this conversation includes a fuller understanding of minimum wage that acknowledges the difficulties so many different families face in meeting their everyday needs. We all have the ability to contribute to this conversation, both on a local and national level. Learn more about minimum wage advocacy at the local and national level: <a href="http://workingeastbay.org/" target="_blank">East Bay Alliance for a Sustainable Economy</a>; <a href="http://www.liftupoakland.org/" target="_blank">Lift Up Oakland</a>; <a href="http://laborcenter.berkeley.edu/" target="_blank">UC Berkeley Labor Center</a>; <a href="http://raisetheminimumwage.org/" target="_blank">Raise the Minimum Wage</a>.</p>
+
+            </div>
+            
+        </div>
+    </div> 
+
+<!-- Part 7: Credits -->
+	<div class="slide" id="slide7" data-slide="7" data-stellar-background-ratio="0.5">
+		<div class="container clearfix">
+
+			<div id="content" class="grid_12">
+				<h1>Credits</h1>
+			</div>
+
+			<div class="grid_12">
+				<p>This website was created by Emily Paul, Shomik Sarkar, and Pavel Vanegas as the final project for Information Visualization, a course at the <a href="http://www.ischool.berkeley.edu/" target="_blank">UC Berkeley School of Information</a>.</p>
+				<p>The visualizations - created with Tableau and D3.js - are based off data provided from <a href="http://www.insightcced.org/" target="_blank">The Insight Center for Community Economic Development</a>, and the Center's Family Economic Self-Sufficiency Project.  The website was designed using <a href="https://github.com/jalxob/cool-kitten" target="_blank">Cool Kitten</a>, a framework by Jalxob. Family icons are from the Noun Project, images by Stephanie Wauters an Refika Kortun.</p>
+                
+			</div>
+
+		</div>
+	</div>
+
+<!-- Scripts -->
+
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+	<script type="text/javascript" src="js/jquery.stellar.min.js"></script>
+	<script type="text/javascript" src="js/waypoints.min.js"></script>
+	<script type="text/javascript" src="js/jquery.easing.1.3.js"></script>
+	<script type="text/javascript" src="js/scripts.js"></script>
+
+<!-- <script type="text/javascript" src="js/scripts.min.js"></script> -->
+
+<!-- Tableau Script -->
+<script type='text/javascript' src='http://public.tableausoftware.com/javascripts/api/viz_v1.js'></script>
+
+</body>
+</html>
