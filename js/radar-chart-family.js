@@ -19,8 +19,6 @@ var RadarChart = {
    //expand extra width if titles are being cut off
    ExtraWidthX: 300,
    ExtraWidthY: 50,
-   // color: d3.scale.category10()
-   // color: "#0000ff"
   };
 
   
@@ -31,7 +29,6 @@ var RadarChart = {
     }
     }
   }
-  // cfg.maxValue = Math.max(cfg.maxValue, d3.max(d, function(i){return d3.max(i.map(function(o){return o.value;}))}));
   //set axis to fixed length
   cfg.maxValue = 2000;
   var allAxis = (d[0].map(function(i, j){return i.axis}));
@@ -83,7 +80,6 @@ var RadarChart = {
      .attr("transform", "translate(" + (cfg.w/2-levelFactor + cfg.ToRight) + ", " + (cfg.h/2-levelFactor) + ")")
      .attr("fill", "#737373")
      .text(Format((j+1)*cfg.maxValue/cfg.levels));
-     // .text(Format((j+1)*cfg.maxValue/4));
   }
   
   series = 0;
@@ -106,7 +102,6 @@ var RadarChart = {
   axis.append("text")
     .attr("class", "legend")
     .text(function(d){return d})
-    // .style("font-family", "sans-serif")
     //adjust axis label font sizes
     .style("font-size", "12px")
     .attr("text-anchor", "middle")
@@ -132,7 +127,6 @@ var RadarChart = {
            .append("polygon")
            .attr("class", "radar-chart-serie"+series)
            .style("stroke-width", "2px")
-           // .style("stroke", cfg.color(series))
            .style("stroke", color)
            .attr("points",function(d) {
              var str="";
@@ -141,8 +135,6 @@ var RadarChart = {
              }
              return str;
             })
-           // .style("fill", function(j, i){return cfg.color(series)})
-           // .style("fill-opacity", cfg.opacityArea)
            .style("fill", color)
            .style("fill-opacity", .5)
            .on('mouseover', function (d){
@@ -184,7 +176,6 @@ var RadarChart = {
       return cfg.h/2*(1-(Math.max(j.value, 0)/cfg.maxValue)*cfg.factor*Math.cos(i*cfg.radians/total));
     })
     .attr("data-id", function(j){return j.axis})
-    // .style("fill", cfg.color(series)).style("fill-opacity", .9)
     .style("fill", color)
     .style("fill-opacity", .9)
     .on('mouseover', function (d){
